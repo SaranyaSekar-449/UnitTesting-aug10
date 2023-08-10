@@ -1,0 +1,30 @@
+<div ng-controller="UserListController">
+  <div class="icon-container">
+    <i ng-if="isTokenUsed" class="fa fa-check-circle" style="color: green; padding-left: 40px;"></i>
+    <span ng-if="isTokenUsed" style="font-size: 18px; font-weight: bold;">Users (Token used)</span>
+    <span ng-if="isTokenUsed"> <button style="float: right; margin-top: 5px;"class="btn btn-primary" ng-click="logout()">Logout</button></span>
+    <i ng-if="!isTokenUsed" class="fa fa-times-circle" style="color: red;"></i>
+    <span ng-if="!isTokenUsed" style="font-size: 18px; font-weight: bold;">Users (Token not used)</span>
+
+    <div ng-if="isTokenUsed && userData" class="userdata">
+      <h2><img class="userimage" ng-src="{{ userData.avatar_url }}" alt="{{ userData.login }}"> {{ userData.login }}</h2>
+      <p>Number of Repositories: {{ userData.public_repos }}</p>
+      <p>Number of Followers: {{ userData.followers }}</p>
+      <p>Number of Following: {{ userData.following}}</p>
+    </div>
+  </div>
+  
+  <div class="card-container">
+    <div class="user-card" ng-repeat="user in userList">
+      <img ng-src="{{ user.avatar_url }}" alt="{{ user.login }}">
+      <div class="card-content"> 
+        <span style="font-weight: bold; font-size: 22px;">{{ user.login }}</span>
+        <p>User Type: {{ user.type }}</p>
+        <p>Followers: {{ user.followersCount }}</p>
+        <p>Total Repositories: {{ user.reposCount }}</p>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
